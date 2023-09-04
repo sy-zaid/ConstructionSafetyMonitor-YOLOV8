@@ -16,6 +16,13 @@ classnames = ['Excavator', 'Gloves', 'Construction-Hat', 'Ladder', 'Mask', 'NO-C
               'Machinery', 'mini-van', 'sedan', 'semi', 'trailer', 'truck and trailer', 'truck', 'van', 'vehicle',
               'wheel loader']
 
+# Defining color variables based on BGR format(Blue, Green, Red).
+red = (0, 0, 255)
+green = (0, 255, 0)
+blue = (255, 0, 0)
+white = (255, 255, 255)
+black = (0, 0, 0)
+
 # Looping through the video and getting the detection started.
 while True:
     success, img = video.read()
@@ -50,18 +57,21 @@ while True:
 
             # Putting condition | If the detected class is violating the safety protocol.
             if detectedClass in ['NO-Construction-Hat', 'NO-Mask', 'NO-Safety-Vest']:
-                cvzone.cornerRect(img, bbox, colorC=(0, 0, 255), colorR=(0, 0, 255))
-            # Creating the corner rectangle from cvzone library.
+
+                # Creating the corner rectangle from cvzone library.
+                cvzone.cornerRect(img, bbox, colorC=red, colorR=red)
+
+                # Putting text over the rectangle.
+                cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
+                                   thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=red)
 
             else:
-                cvzone.cornerRect(img, bbox)
+                # Creating the corner rectangle from cvzone library.
+                cvzone.cornerRect(img, bbox, colorC=green, colorR=green)
 
-            # Putting text over the rectangle.
-            cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                               thickness=1, font=cv2.FONT_HERSHEY_PLAIN,offset=6)
+                # Putting text over the rectangle.
+                cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
+                                   thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=green, colorT=black)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
-    #adasd
-
-
