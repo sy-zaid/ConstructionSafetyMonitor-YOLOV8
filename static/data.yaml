@@ -1,0 +1,7 @@
+train: ../plants/train/images
+val: ../plants/valid/images
+test: ../plants/test/images
+
+nc: 2
+names: ['Leaf','Plant']
+
