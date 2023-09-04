@@ -58,7 +58,9 @@ while True:
 
             # Putting text over the rectangle.
             cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                               thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6)
+                               thickness=1, font=cv2.FONT_HERSHEY_PLAIN,offset=6)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
+
+
