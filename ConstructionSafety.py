@@ -55,23 +55,25 @@ while True:
             # Variable for holding the detected class name.
             detectedClass = classnames[clsId]
 
-            # Putting condition | If the detected class is violating the safety protocol.
-            if detectedClass in ['NO-Construction-Hat', 'NO-Mask', 'NO-Safety-Vest']:
+            # Putting condition | The confidence must be high so the detections don't overlap
+            if confidence > 0.5:
+                # Putting condition | If the detected class is violating the safety protocol.
+                if detectedClass in ['NO-Construction-Hat', 'NO-Mask', 'NO-Safety-Vest']:
 
-                # Creating the corner rectangle from cvzone library.
-                cvzone.cornerRect(img, bbox, colorC=red, colorR=red)
+                    # Creating the corner rectangle from cvzone library.
+                    cvzone.cornerRect(img, bbox, colorC=red, colorR=red)
 
-                # Putting text over the rectangle.
-                cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                                   thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=red)
+                    # Putting text over the rectangle.
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=red)
 
-            else:
-                # Creating the corner rectangle from cvzone library.
-                cvzone.cornerRect(img, bbox, colorC=green, colorR=green)
+                else:
+                    # Creating the corner rectangle from cvzone library.
+                    cvzone.cornerRect(img, bbox, colorC=green, colorR=green)
 
-                # Putting text over the rectangle.
-                cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                                   thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=green, colorT=black)
+                    # Putting text over the rectangle.
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=green, colorT=black)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
