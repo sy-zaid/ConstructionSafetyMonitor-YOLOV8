@@ -2,9 +2,12 @@ from ultralytics import YOLO
 import cvzone
 import cv2
 
-# Getting video source.
-# video = cv2.VideoCapture("../static/videos/video-1.mp4")
-video = cv2.VideoCapture("E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/videos/video-1.mp4")
+# DEFINING VIDEO SOURCE | Use your own video by providing its absolute path on the disk. (e.g.
+# C:/users/user-name/videos/file-name.mp4)
+path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/videos/video-3.mp4"
+
+# Creating a video capture from opencv based on the path provided.
+video = cv2.VideoCapture(path)
 
 # Creating YOLO MODEL.
 model = YOLO(
