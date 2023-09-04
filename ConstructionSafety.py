@@ -39,28 +39,19 @@ while True:
             # Calculating confidence level.
             confidence = round(box.conf[0].item(), 2)
 
+            # Creating the corner rectangle from cvzone library.
+            cvzone.cornerRect(img, bbox)
+
             # Below variable holds the class ID number. (e.g. 1.00)
             clsId = box.cls[0]
-            '''box.cls = cls (torch.Tensor) or (numpy.ndarray): The class values of the boxes.'''
-
             clsId = int(clsId)
-
-            # Variable for holding the detected class name.
-            detectedClass = classnames[clsId]
-
-            # Putting condition | If the detected class is violating the safety protocol.
-            if detectedClass in ['NO-Construction-Hat', 'NO-Mask', 'NO-Safety-Vest']:
-                cvzone.cornerRect(img, bbox, colorC=(0, 0, 255), colorR=(0, 0, 255))
-            # Creating the corner rectangle from cvzone library.
-
-            else:
-                cvzone.cornerRect(img, bbox)
 
             # Putting text over the rectangle.
             cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                               thickness=1, font=cv2.FONT_HERSHEY_PLAIN,offset=6)
+                               thickness=1, font=cv2.FONT_HERSHEY_PLAIN)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
 
 
+#Hell
