@@ -43,7 +43,7 @@ in construction environments through automation and intelligent monitoring.
 
 1. Once you have downloaded all the files, set up your python interpreter **(Recommended Interpreter: Python 3.10.4)**.
 2. After setting up your interpreter, open the file named **"main.py"** and click on **Run**.
-3. You can always change the video source by changing the variable **"path"** defined in the code file (Add path of your
+3. You can always change the video source by changing the variable **"path"** defined in the **ConstructionSafety.py** file (Add path of your
    own video).
 
 ## Contribution
