@@ -3,7 +3,7 @@ import cvzone
 import cv2
 
 # DEFINING VIDEO SOURCE | Use your own video by providing its absolute path on the disk. (e.g.
-# C:/users/user-name/videos/file-name.mp4)
+# C:/users/user-name/videos/your-file-name.mp4)
 path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/videos/video-3.mp4"
 
 # Creating a video capture from opencv based on the path provided.
@@ -98,3 +98,5 @@ while True:
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
+
+
