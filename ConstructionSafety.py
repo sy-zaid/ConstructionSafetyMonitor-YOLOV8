@@ -8,6 +8,8 @@ path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/video
 
 # Creating a video capture from opencv based on the path provided.
 video = cv2.VideoCapture(path)
+frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
+frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Creating YOLO MODEL.
 model = YOLO(
@@ -69,6 +71,20 @@ while True:
                     # Putting text over the rectangle.
                     cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
                                        thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=red)
+
+                    cv2.putText(img, "Attention!",
+                                (frame_width - 250, frame_height - 50), fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=2.5,
+                                color=red, thickness=2)
+
+                # Putting condition | If the detected class is of a person.
+                elif detectedClass == 'Person':
+
+                    # Creating the corner rectangle from cvzone library.
+                    cvzone.cornerRect(img, bbox, colorC=blue, colorR=blue)
+
+                    # Putting text over the rectangle.
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=blue)
 
                 else:
                     # Creating the corner rectangle from cvzone library.
