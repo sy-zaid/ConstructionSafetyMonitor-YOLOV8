@@ -12,7 +12,7 @@ in construction environments through automation and intelligent monitoring.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 

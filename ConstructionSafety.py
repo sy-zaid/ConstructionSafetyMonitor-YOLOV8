@@ -8,6 +8,8 @@ path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/video
 
 # Creating a video capture from opencv based on the path provided.
 video = cv2.VideoCapture(path)
+
+# Getting Frame width and height.
 frame_width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
@@ -46,7 +48,7 @@ while True:
             bbox = x1, y1, width, height
 
             cv2.putText(img, "CONSTRUCTION SAFETY DETECTION", org=(50, 50), fontFace=cv2.FONT_HERSHEY_PLAIN,
-                        fontScale=2, color=(0, 0, 0), thickness=3)
+                        fontScale=3, color=black, thickness=2)
 
             # Calculating confidence level.
             confidence = round(box.conf[0].item(), 2)
