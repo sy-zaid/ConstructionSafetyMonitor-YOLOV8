@@ -4,7 +4,7 @@ import cv2
 
 # DEFINING VIDEO SOURCE | Use your own video by providing its absolute path on the disk. (e.g.
 # C:/users/user-name/videos/your-file-name.mp4)
-path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/videos/video-3.mp4"
+path = "E:/Syed Muhammad Zaid/My Projects/ConstructionSafetyMonitor/static/videos/video-4.mp4"
 
 # Creating a video capture from opencv based on the path provided.
 video = cv2.VideoCapture(path)
@@ -63,40 +63,38 @@ while True:
             detectedClass = classnames[clsId]
 
             # Putting condition | The confidence must be high so the detections don't overlap
-            if confidence > 0.5:
+            if confidence > 0.6:
                 # Putting condition | If the detected class is violating the safety protocol.
                 if detectedClass in ['NO-Construction-Hat', 'NO-Mask', 'NO-Safety-Vest']:
 
                     # Creating the corner rectangle from cvzone library.
-                    cvzone.cornerRect(img, bbox, colorC=red, colorR=red)
+                    cvzone.cornerRect(img, bbox, colorC=red, colorR=red, t=3)
 
                     # Putting text over the rectangle.
-                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=red)
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=0.9,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=5, colorR=red)
 
                     cv2.putText(img, "Attention!",
                                 (frame_width - 250, frame_height - 50), fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=2.5,
-                                color=red, thickness=2)
+                                color=red, thickness=3)
 
                 # Putting condition | If the detected class is of a person.
                 elif detectedClass == 'Person':
 
                     # Creating the corner rectangle from cvzone library.
-                    cvzone.cornerRect(img, bbox, colorC=blue, colorR=blue)
+                    cvzone.cornerRect(img, bbox, colorC=blue, colorR=blue, t=3)
 
                     # Putting text over the rectangle.
-                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=blue)
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=0.9,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=5, colorR=blue)
 
                 else:
                     # Creating the corner rectangle from cvzone library.
-                    cvzone.cornerRect(img, bbox, colorC=green, colorR=green)
+                    cvzone.cornerRect(img, bbox, colorC=green, colorR=green, t=3)
 
                     # Putting text over the rectangle.
-                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=1,
-                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=6, colorR=green, colorT=black)
+                    cvzone.putTextRect(img, f'{confidence} {classnames[clsId]}', (max(0, x1), max(20, y1)), scale=0.9,
+                                       thickness=1, font=cv2.FONT_HERSHEY_PLAIN, offset=5, colorR=green, colorT=black)
 
-    cv2.imshow("Image", img)
+    cv2.imshow("Construction Safety Monitor", img)
     cv2.waitKey(1)
-
-
